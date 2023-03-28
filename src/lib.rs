@@ -2,7 +2,12 @@ extern crate num_bigint;
 extern crate num_traits;
 
 use num_bigint::BigUint;
+use num_traits::One;
 use std::str::FromStr;
+
+fn mersenne_number(n: u32) -> BigUint {
+    (BigUint::one()<< n) - BigUint::one()
+}
 
 pub fn is_prime(n_str: &str) -> bool {
     let n = BigUint::from_str(n_str).unwrap();

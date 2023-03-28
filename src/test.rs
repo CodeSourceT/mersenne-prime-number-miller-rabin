@@ -769,7 +769,7 @@ fn rsa_primes() {
     }
 }
 
-    #[test]
+#[test]
 fn rsa_semiprimes() {
     let rsa_semiprimes = vec![
             "1522605027922533360535618378132637429718068114961380688657908494580122963258952897654000350692006139",
@@ -830,4 +830,14 @@ fn rsa_semiprimes() {
         for n in rsa_semiprimes {
             assert!(is_prime(&n) == false);
         }
+}
+
+#[test]
+fn mersenne_number_test(){
+    let mersenne_index : Vec<u32> = vec![2,3,5,7,13,17,19,31,61];
+    let mersenne_values : Vec<u64> = vec![3,7,31,127,8191,131071,524287,2147483647,2305843009213693951];
+
+    for (i, el) in mersenne_index.iter().enumerate() {
+        assert_eq!(BigUint::from(mersenne_values[i]), mersenne_number(*el));
+    }
 }

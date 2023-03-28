@@ -2,7 +2,13 @@
 name = "mersenne-prime-number-miller-rabin"
 version = "0.1.0"
 edition = "2021"
+description = "This package provides function to generate Mersenne number and test primality with Miller-Rabin Algorithme"
+readme = "README.md"
+repository = "https://github.com/CodeSourceT/mersenne-prime-number-miller-rabin"
+license = "GNU General Public License v2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+num-bigint = "0.4"
+num-traits = "0.2"

@@ -15,6 +15,8 @@ use std::str::FromStr;
 /// Basic usage:
 ///
 /// ```
+/// use mersenne_prime_number_miller_rabin::mersenne_number;
+/// 
 /// let a_mersenne_number = mersenne_number(61);
 /// ```
 pub fn mersenne_number(n: u32) -> BigUint {
@@ -30,11 +32,14 @@ pub fn mersenne_number(n: u32) -> BigUint {
 /// Basic usage:
 ///
 /// ```
-/// let is_prime = is_prime("13");
+/// use num_bigint::BigUint;
+/// use std::str::FromStr;
+/// use mersenne_prime_number_miller_rabin::is_prime;
+/// 
+/// let n = BigUint::from_str("13").unwrap();
+/// let is_prime = is_prime(n);
 /// ```
-pub fn is_prime(n_str: &str) -> bool {
-    let n = BigUint::from_str(n_str).unwrap();
-
+pub fn is_prime(n: BigUint) -> bool {
     if n < BigUint::from(2u32) {
         return false;
     }
@@ -81,6 +86,24 @@ pub fn is_prime(n_str: &str) -> bool {
     true
 }
 
+/// Check if a number is probably prime from a string
+///
+/// This function use Miller-Rabin algorithme for check if a number is probably prime
+///
+/// # Examples
+///
+/// Basic usage:
+///
+/// ```
+/// use mersenne_prime_number_miller_rabin::is_prime_from_str;
+/// 
+/// let is_prime = is_prime_from_str("13");
+/// ```
+pub fn is_prime_from_str(n_str: &str) -> bool {
+    let n = BigUint::from_str(n_str).unwrap();
+    return is_prime(n);    
+}
+
 /// Performs modulus division on a number raised to the power of another number.
 ///
 /// Performs modulus division on a number raised to the power of another number.
@@ -90,10 +113,13 @@ pub fn is_prime(n_str: &str) -> bool {
 /// Basic usage:
 ///
 /// ```
+/// use num_bigint::BigUint;
+/// use mersenne_prime_number_miller_rabin::bmodpow;
+/// 
 /// let base = BigUint::from(0u32);
-/// let expo = BigUint::from(3);
-/// let module = BigUint::from(1);
-/// let result = bmodpow(base, expo, module);
+/// let expo = BigUint::from(3 as u32);
+/// let module = BigUint::from(1 as u32);
+/// let result = bmodpow(&base, &expo, &module);
 /// ```
 pub fn bmodpow(base: &BigUint, exponent: &BigUint, modulus: &BigUint) -> BigUint {
     if *base == BigUint::from(0u32) {

@@ -92,7 +92,8 @@ fn small_primes() {
         ];
 
     for p in small_primes {
-        assert!(is_prime(p.to_string().as_str()) == true);
+        assert!(is_prime_from_str(p.to_string().as_str()) == true);
+        assert!(is_prime(BigUint::from_str(p.to_string().as_str()).unwrap()) == true);
     }
 }
 
@@ -717,7 +718,8 @@ fn small_non_primes() {
     ];
 
     for n in small_non_primes {
-        assert!(is_prime(n.to_string().as_str()) == false);
+        assert!(is_prime_from_str(n.to_string().as_str()) == false);
+        assert!(is_prime(BigUint::from_str(n.to_string().as_str()).unwrap()) == false);
     }
 }
 
@@ -765,7 +767,8 @@ fn rsa_primes() {
     ];
 
     for p in rsa_primes {
-        assert!(is_prime(&p) == true);
+        assert!(is_prime_from_str(&p) == true);
+        assert!(is_prime(BigUint::from_str(p.to_string().as_str()).unwrap()) == true);
     }
 }
 
@@ -828,7 +831,8 @@ fn rsa_semiprimes() {
         ];
 
         for n in rsa_semiprimes {
-            assert!(is_prime(&n) == false);
+            assert!(is_prime_from_str(&n) == false);
+            assert!(is_prime(BigUint::from_str(n.to_string().as_str()).unwrap()) == false);
         }
 }
 
